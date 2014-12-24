@@ -1,0 +1,177 @@
+Enter/track my tasks so that I can keep a clear mind and become extremely productive
+  Create a new task, define it's name/context/description, and see it in a list of all tasks so I can start tracking tasks. 
+    Create new project
+      *Create project from template
+      Setup unit testing
+        Get tests running
+        Get tests to run automatically
+      Get a sample project working on a local webserver
+      Setup code watching
+        js changes should be immediately available
+        html changes should be immediately available
+    Create new task
+      Create post/save framework
+        Create REST service to accept new task fields
+        Save to flatfile
+          Save to file
+          Read from file
+        Create service to handle saving and loading task data
+      Create a new task and give it a name so I have a task.
+      Provide a long description for the task so I can go into detail.
+      Set the context for where a task can be done so I can easily know what I can do where I am.
+    See it in a list of tasks
+      Create REST service to load the task list
+      Display all tasks on the screen.
+      
+  Create & Move a task through the GTD lifecycle categories (Inbox, Someday/Maybe, Actions, Waiting For, Completed) so I can manage task statuses.
+    Add lifecycle field to UI and REST service
+    Allow tasks to be marked 'completed'
+      Can set tasks as 'completed' in the UI
+      REST service can save 'completed' flag
+      UI indicates completed actions somehow
+    Enhance the UI to be able to select a specific lifecycle or All
+  
+
+--Next: Projects
+
+
+
+  FLOW
+    Move efficiently between screens so I can focus on tasks, not the tool and navigation
+    Do as little manual work as possible (as much intuitive stuff should be automated as possible) so I spend less time managing. More time doing.
+    Use a simple, intuitive interface without a lot of clunky customization possibilities so I spend less time managing. More time doing.
+    To use an extremely responsive app so don't have to think about the tool.
+    Update multiple tasks at a time to change fields like context, completion status, state, etc so I can quickly process tasks and not hate the tool.
+      
+  INBOX
+    I don't want to need to provide any task details other than name when putting stuff in the inbox so I can record and go. I'll process it later.
+    View all inbox items separately so I can finish processing them
+
+  ACTIONS
+    Group Action items by feature context, due date, etc for easy processing. Only sorting by names is clunky.
+    I don't want to see 'Projects' listed in the actions, because they have tasks. Only tasks should be shown so I only have to see actionable items.
+    View all actionable tasks so I can know what to do next.
+    Indicate which Actions are Next Actions so I can have focus for today.
+    ?Clear all Next Action items  so I can change it up each day.
+
+  PLANNED TASKS? 
+    ?(JUSTIN) Set task order for upcoming project tasks, at least which is next so I can be aware of some logical order when picky next tasks
+    ?Define a set of upcoming project tasks that will automatically move to Next Action once the current Next Action items are complete so I have less manual work to do.
+
+  SOMEDAY/MAYBE
+    View all someday tasks and projects, just like when using the Next Action section for consistency of usage.
+    Move a project to "someday" and have the tasks handled intuitively so I can think about tasks and not the tool
+      ?Moving a Project to "someday" will move just the parent project leave all children in their existing sections?
+      ?Moving a Project to "someday" will move all tasks to someday?
+      ?Moving a Project to "someday" will move the project to someday, leave all children in their existing sections, but only show the tasks when viewing the project.
+      ?Same as active/inactive?
+
+  WAITING FOR
+    View tasks that I'm waiting for somebody/something about so I know it's not in my court
+    Interact with tasks in this section like any other section so the tool isn't confusing.
+    ?Mark tasks or projects as ON HOLD so I don't lose the info but I don't have to see them in my lists either (ISN'T THIS SOMEDAY/MAYBE?)
+    ?Easily be able to see/not see ON HOLD tasks within their normal sections (ISN"T THIS SOMEDAY/MAYBE FOR PROJECTS?)
+    Define who/what I'm waiting for and what conditions will put it back in my court so I don't need to keep remembering who/what I'm waiting on. (Notes field?)
+    Define a follow up date that will put a Waiting For task back in Next Actions so I can easily follow up and spend less time processing tasks.
+    ?See some indication that a task is waiting for a scheduled follow up
+
+  COMPLETION/DELETION
+    Mark a parent project as completed and the tasks be handled intuitively so I can spend less time fighting the tool.
+      ?Mark all tasks under a project as completed by completing the parent project so I can say it's all done easily.
+      ?Mark a parent project as completed and promote all child tasks to active status…why?
+    Delete a parent project and the tasks be handled intuitively so I can manage tasks quickly and not fight the tool.
+      ?Delete a parent project and promote all children to active status so I can remove a parent and not lose the child tasks.
+      ?Delete a parent project and delete all children so I can't quickly delete an entire tree I don't care about.
+    See completed tasks so I can review what's been done
+      See a list of all completed tasks, including what project they were in so I can see what was done and still have some context, too.
+      See/not see completed tasks for an active project or tasks within the context that I'm viewing them so I can review completed items in context without needing a new screen.
+    Undo completion so I don't have to recreate entries after mistakes 
+      Uncomplete a task if it was completed by mistake. It should restore any related parent project structure that may have disappeared so I don't have to reenter it.
+      Undo 'completing' a task or project easily that I completed by mistake so I don't have to become aware of the tool and do a lot of work to fix my tasks.
+
+
+  TASK DEFINITION
+    Schedule a task to appear on a certain date in the Actions list so I can enter it but ignore it until it matters. (Useful for followups)
+    Set task priority (low, med, high, none) so I can manage priority.
+    ?Set mental effort so I know if I'm in the mood.
+    Set estimated task completion time so I know if I have time to do something.
+    ?Create customer fields I can search on so I can track non-standard info I care about.
+    Create a recurring event based on calendar dates so I don't need to do this work by hand.
+    Create a recurring event based on last done date, so I don't need to do this work by hand.
+    DUE DATES
+      Set a due date for a task so I know when something must be done.
+      ?Set a due date for a project so I know when something must be done (What does this due for all the tasks underneath it?)
+      See all my due tasks on a calendar so I can have visual sense of when things are due.
+      Search my due tasks by common criteria (overdue, due today, due within the next week, due sometime…) so I can see what's coming.
+    FEATURES/TAGS/LABELS
+      Define a label that represents a group of related tasks (like a feature group) so I can see related tasks easily.
+      Attach multiple labels to a single task so I can slice and dice my tasks.
+    RICH CONTENT
+      Attach photos or URLs to my tasks so I can have reference info attached.
+      Quickly create a task from a photo or URL so it's easy to create a task when I see something somewhere.
+      Have smart description text so I can easily follow links, call people, etc.
+        Click on URLs in the description to launch the link in a browser so I don't have to copy/paste.
+        Click on phone numbers in the description to launch GV on the computer, dialer on mobile so I can easily call people.
+        Click on addresses in the description to launch google maps on the computer, maps app on mobile so I can easily get directions.
+    LOCATION
+      See tasks I can do based on my current detected location so I don't have to group by and search context.
+      Define location-based tasks so I can effortlessly see what I can do.  
+
+
+  PROJECTS
+    Create 'projects' of multiple tasks so I know that a project is done when I've completed all subtasks
+    Create epic-like projects made up of subprojects so I can effectively break down tasks.
+    Projects to have as many fields from tasks that make sense, but not have those that don't so it's intuitive. 
+      Don't want to see context on projects (OR maybe it can set a default value for child tasks) so I'm not confused about why it's there.
+    Add tasks directly to an epic-like project. Epics don't just have to have projects inside so I have more flexibility.
+    Easily convert a task into a project so I can break tasks down with minimal overhead.
+    Easily convert a project into a task if I realize it's just a single action so I don't have to retype the descriptions if I need to convert the task.
+
+  SEARCH/FILTER
+    Filter tasks by context so I can see what I can do where I am now.
+    Filter tasks by due date so I know when things are due.
+    Filter tasks by priority so I can see important stuff.
+    Filter tasks by label so I can see all related tasks/projects.
+    ?Filter tasks by mental effort so I know what I'll have the brain power to do.
+    ?Filter tasks by completion time so I know what I have time to do.
+    ?Exclude tasks by category when filtering so I don't have to select all but one.
+    Include completed items when filtering tasks.
+    Search for tasks by title so I can find something I know I have somewhere.
+    Search for tasks by text in the description so I can find something I know I have somewhere.
+    Include completed items when searching tasks.
+
+  SORT
+    Sort tasks by context so I can easily choose what's next.
+    Sort tasks by name so I can easily choose what's next.
+    Sort tasks by feature/label so I can easily choose what's next.
+    Sort tasks by priority so I can easily choose what's next.
+    ?Sort tasks by completion time so I can easily choose what's next.
+    ?Sort tasks by mental effort so I can easily choose what's next.
+    Sort tasks by due date so I can easily choose what's next.
+
+  BACKUP
+    Want my data to be backed up so I can have peace of mind and not worry about losing it.
+    ?Want my data to be available anywhere so I can jump between devices.
+    Export data to excel so I can process it or import it into a new tool.
+
+  NOTIFICATIONS
+    Be proactively notified of tasks coming due so I don't forget them.
+    ?Be proactively notified of scheduled tasks that are now ready to work so I am aware of them.
+    Easily see when something is overdue so I don't lose track of tasks.
+
+  REFERENCE
+    ?Attach existing reference docs to specific tasks, features, or projects so the info is easy to find.
+    Attach photos or URLs to a feature in a reference section so I can group interesting things I see without defining tasks.  
+    ?Add a photo or URL to the general reference section (or dump into the inbox) so I can store things for later reference.
+
+  ALTITUDE
+    Define goals according to altitude so I can navigate toward my future and keep an eye on what's important.
+    ?Treat altitude goals like features or epic projects so they're tied to tasks and completing these goals and progressing is similar to everything else.
+    Associate tasks and projects with an altitude goal so I can track my progress toward that end.
+    View tasks and projects I've completed while progressing toward my altitude goals so I can track my progress.
+  
+  STATISTICS
+    See average task/project completion time to see how efficient I am and the lag from start to finish. It might indicate procrastination.
+    See the # of tasks/projects completed within x time so I can feel good.
+
+
