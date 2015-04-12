@@ -1,3 +1,4 @@
+<!--
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <header class="hero-unit" id="banner">
@@ -7,8 +8,29 @@
     <img src="assets/images/yeoman.png" alt="I'm Yeoman">
   </div>
 </header>
+-->
 
-<div class="container">
+<div>
+  <form name="taskform" novalidate ng-submit="taskform.$valid && save(task)">
+    <task-edit task="task"></task-edit>
+    <input type="submit" ng-disabled="!taskform.$valid" ng-hide="task._id" value="Save"/>
+    <input type="submit" ng-disabled="!taskform.$valid" ng-show="task._id" value="Update"/>
+    <input type="button" ng-disabled="!taskform.$valid" ng-show="task._id" ng-click="newTask()" value="New Task"/>
+  </form>
+</div>
+<br>
+<div>
+  All tasks:
+  <ul ng-repeat="t in tasks track by $index ">
+      <li>
+        <div><a href="" ng-click="delete(t)">x</a> <a href="" ng-click="edit(t)">Edit</a></div>
+        <task-view task="t"></task-view>
+      </li>
+  </ul>
+</div>
+
+<!--
+<div class="container"</>
   <div class="row">
     <div class="col-lg-12">
       <h1 class="page-header">Features:</h1>
@@ -26,3 +48,4 @@
          <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
   </div>
 </footer>
+-->

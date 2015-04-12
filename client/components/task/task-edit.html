@@ -1,0 +1,11 @@
+<div>
+  <span ng-hide="task._id"><b>Enter a new task:</b></span>
+  <span ng-show="task._id"><b>Update existing task:</b></span>
+  <br>Title: <input type="text" required="true" ng-model="task.data.title"/>
+  <br>Description: <input type="text" ng-model="task.data.description"/>
+
+  <span ng-show="task._id">
+    <div>Created: {{::task.data.created | date: 'MMM d, yyyy  h:m a'}}</div>
+    <div>Last Updated: {{::task.data.updated | date: 'MMM d, yyyy  h:m a'}}</div>
+  </span>
+</div>

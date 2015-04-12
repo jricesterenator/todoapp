@@ -16,3 +16,5 @@ https://github.com/npm/npm/issues/6051
 To get it working, upgraded npm and imagemin.
 npm install --global npm@latest
 npm install grunt-contrib-imagemin --save-dev
+
+3. To run the webpage: grunt serve
