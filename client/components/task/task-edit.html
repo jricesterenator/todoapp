@@ -16,7 +16,7 @@
 
   <span class="task-attr-parent">
     <h4>Parent</h4>
-    <select ng-options="t._id as t.data.title for t in tasks | nonSelectedTasks:task" ng-model="task.value.data.parent">
+    <select ng-options="t._id as t.data.title for t in tasks | nonSelectedTasks:task.value" ng-model="task.value.data.parent">
       <option value="">-- choose parent --</option>
     </select>
   </span>
@@ -35,17 +35,17 @@
 
     <span class="task-attr-id">
       <h4>Id</h4>
-      <span>{{::task.value._id}}</span>
+      <span>{{task.value._id}}</span>
     </span>
 
     <span class="task-attr-created">
       <h4>Created</h4>
-      <span class="attr-value">{{::task.value.data.created | date: 'MMM d, yyyy  h:mm a'}}</span>
+      <span class="attr-value">{{task.value.data.created | date: 'MMM d, yyyy  h:mm a'}}</span>
     </span>
 
     <span class="task-attr-updated">
       <h4>Updated</h4>
-      <span class="attr-value">{{::task.value.data.updated | date: 'MMM d, yyyy  h:mm a'}}</span>
+      <span class="attr-value">{{task.value.data.updated | date: 'MMM d, yyyy  h:mm a'}}</span>
     </span>
   </span>
 </div>

@@ -55,14 +55,18 @@
 
           <h5>Hierarchy View</h5>
           <ul>
-            <task-entry ng-repeat="t in tasks | parentsOnly track by t._id" task="t" alltasks="tasks"></task-entry>
+            <task-entry ng-repeat="t in tasks | parentsOnly track by t._id" task="t" alltasks="tasks" recursive="true"></task-entry>
           </ul>
 
-          <h5>Task Dump (in case any orphans)</h5>
+          <h5>Orphans (caused by hierarchical delete)</h5>
           <ul>
-            <task-entry ng-repeat="t in tasks" task="t"></task-entry>
+            <task-entry ng-repeat="t in tasks | filter: isOrphan" task="t" alltasks="tasks"></task-entry>
           </ul>
 
+          <h5>All</h5>
+          <ul>
+            <task-entry ng-repeat="t in tasks" task="t" alltasks="tasks"></task-entry>
+          </ul>
          <!--  <ul>
               <li ng-repeat="t in tasks | parentsOnly track by t._id">
                 <a ng-click="deleteTask(t)">x</a> 

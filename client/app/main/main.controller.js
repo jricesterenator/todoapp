@@ -41,6 +41,25 @@ angular.module('todoAppApp')
 
     };
 
+    $scope.isOrphan = function(task2) {
+
+      if(angular.isUndefined(task2.data.parent) || task2.data.parent === null) {
+        return false;
+      }
+
+      if(angular.isUndefined($scope.tasks)) {
+        return false;
+      }
+
+      var i;
+      for(i=0; i<$scope.tasks.length; ++i) {
+        if($scope.tasks[i]._id === task2.data.parent) {
+          return false;
+        }
+      }
+      return true;
+    };
+
     //----------------
     $scope.tasks = [];
     $scope.contexts = [];

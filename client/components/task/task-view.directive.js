@@ -13,7 +13,7 @@ angular.module('todoAppApp')
       link: function(scope) {
         console.log("TASK VIEW");
         console.log(scope.tasks);
-        console.log(scope.alltasks)
+        console.log(scope.alltasks);
       }
     };
   });
