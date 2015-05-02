@@ -8,26 +8,27 @@
  */
 
 'use strict';
-
+/*
 var _ = require('lodash');
-var settingsService = require('../../components/settingsService');
+//var settingsService = require('../../components/settingsService');
+var base = require('../base');
+
+var dataKey = 'tasks';
 
 
 // Get list of things
 exports.tasks = function(req, res) {
-  var entries = settingsService.entries();
-  res.json(entries);
+  base.things(dataKey, req, res);
 };
 
 //New task
 exports.newTask = function(req, res) {
-  var newId = settingsService.addEntry(req.body);
-  res.send(JSON.stringify({_id: newId}));
+  base.newThing(dataKey, req, res);
 }
 
 //Get task by ID
 exports.task = function(req, res) {
-  var entry = settingsService.entry(req.params.id);
+  var entry = settingsService.entry(dataKey, req.params.id);
   if(entry === undefined) {
     res.status(400).send("Invalid entry.");
   } else {
@@ -37,9 +38,9 @@ exports.task = function(req, res) {
 
 //Update task by ID
 exports.updateTask = function(req, res) {
-  var success = settingsService.update(req.params.id, req.body);
-  if(success) {
-    res.send("Entry updated.");
+  var updatedEntry = settingsService.update(dataKey, req.params.id, req.body);
+  if(updatedEntry) {
+    res.send(updatedEntry);
   } else {
     res.status(400).send("Invalid entry.");
   }
@@ -47,10 +48,11 @@ exports.updateTask = function(req, res) {
 
 //Delete task by ID
 exports.deleteTask = function(req, res) {
-  var success = settingsService.deleteEntry(req.params.id);
-  if(success) {
-    res.send("Entry deleted.");
+  var deletedEntry = settingsService.deleteEntry(dataKey, req.params.id);
+  if(deletedEntry) {
+    res.send(deletedEntry);
   } else {
     res.status(400).send("Invalid entry.");
   }
 }
+*/

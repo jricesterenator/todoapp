@@ -1,27 +1,27 @@
 Enter/track my tasks so that I can keep a clear mind and become extremely productive
-  Create a new task, define it's name/context/description, and see it in a list of all tasks so I can start tracking tasks. 
-    Create new project
+  *Create a new task, define it's name/context/description, and see it in a list of all tasks so I can start tracking tasks. 
+    *Create new project
       *Create project from template
       Setup unit testing
         Get tests running
         Get tests to run automatically
-      Get a sample project working on a local webserver
-      Setup code watching
-        js changes should be immediately available
-        html changes should be immediately available
-    Create new task
-      Create post/save framework
-        Create REST service to accept new task fields
-        Save to flatfile
-          Save to file
-          Read from file
-        Create service to handle saving and loading task data
-      Create a new task and give it a name so I have a task.
-      Provide a long description for the task so I can go into detail.
-      Set the context for where a task can be done so I can easily know what I can do where I am.
-    See it in a list of tasks
-      Create REST service to load the task list
-      Display all tasks on the screen.
+      *Get a sample project working on a local webserver
+      *Setup code watching
+        *js changes should be immediately available
+        *html changes should be immediately available
+    *Create new task
+      *Create post/save framework
+        *Create REST service to accept new task fields
+        *Save to flatfile
+          *Save to file
+          *Read from file
+        *Create service to handle saving and loading task data
+      *Create a new task and give it a name so I have a task.
+      *Provide a long description for the task so I can go into detail.
+      *Set the context for where a task can be done so I can easily know what I can do where I am.
+    *See it in a list of tasks
+      *Create REST service to load the task list
+      *Display all tasks on the screen.
       
   Create & Move a task through the GTD lifecycle categories (Inbox, Someday/Maybe, Actions, Waiting For, Completed) so I can manage task statuses.
     Add lifecycle field to UI and REST service

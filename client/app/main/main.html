@@ -9,24 +9,93 @@
   </div>
 </header>
 -->
+<div class="container-fluid">
+  <div class="row">
+    <!--
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+        <li class="active"><a href="#">Inbox</a></li>
+      </ul>
+    </div>
+  -->
 
-<div>
-  <form name="taskform" novalidate ng-submit="taskform.$valid && save(task)">
-    <task-edit task="task"></task-edit>
-    <input type="submit" ng-disabled="!taskform.$valid" ng-hide="task._id" value="Save"/>
-    <input type="submit" ng-disabled="!taskform.$valid" ng-show="task._id" value="Update"/>
-    <input type="button" ng-disabled="!taskform.$valid" ng-show="task._id" ng-click="newTask()" value="New Task"/>
-  </form>
-</div>
-<br>
-<div>
-  All tasks:
-  <ul ng-repeat="t in tasks track by $index ">
-      <li>
-        <div><a href="" ng-click="delete(t)">x</a> <a href="" ng-click="edit(t)">Edit</a></div>
-        <task-view task="t"></task-view>
-      </li>
-  </ul>
+    <div class="col-sm-9 col-md-10 main">
+
+      <div class="panel panel-default task-panel col-xs-6">
+        <div class="panel-heading task-header">
+          <h2 ng-hide="task.value._id"><b>Enter a new task</b></h2>
+          <h2 ng-show="task.value._id"><b>Update existing task</b></h2>
+        </div>
+        <div class="panel-body">
+          <form name="taskform" novalidate ng-submit="taskform.$valid && save(task.value)">
+            <p>
+              <input type="submit" class="btn btn-primary" ng-disabled="!taskform.$valid" ng-hide="task.value._id" value="Save"/>
+              <input type="submit" class="btn btn-primary" ng-disabled="!taskform.$valid" ng-show="task.value._id" value="Update"/>
+              <input type="button" class="btn btn-danger" ng-show="task.value._id" ng-click="deleteTask(task.value)" value="Delete"/>
+              <input type="button" class="btn btn-default" ng-disabled="!taskform.$valid" ng-show="task.value._id" ng-click="newTask()" value="New Task"/>
+            </p>
+             <p>
+              <task-edit task="task"></task-edit>
+            </p>
+          </form>
+        </div>  
+      </div>
+      <!--
+      <br>
+      <div>
+        Contexts:
+        <span ng-repeat="context in contexts track by $index">{{context.data.name}} </span>
+      </div>
+    -->
+      <div class="panel panel-default col-xs-6">
+        <div class="panel-heading">
+          <h2>All tasks</h2>
+        </div>
+        <div class="panel-body">
+
+          <h5>Hierarchy View</h5>
+          <ul>
+            <task-entry ng-repeat="t in tasks | parentsOnly track by t._id" task="t" alltasks="tasks"></task-entry>
+          </ul>
+
+          <h5>Task Dump (in case any orphans)</h5>
+          <ul>
+            <task-entry ng-repeat="t in tasks" task="t"></task-entry>
+          </ul>
+
+         <!--  <ul>
+              <li ng-repeat="t in tasks | parentsOnly track by t._id">
+                <a ng-click="deleteTask(t)">x</a> 
+                <a ng-click="edit(t)">{{::t.data.title}}
+                  <span ng-show="::t.data.context">[{{::t.data.context}}]</span>
+                  <span ng-show="::t.data.due"><i>&nbsp;&nbsp;{{::t.data.due | date: 'MMM d, yyyy'}}</i></span>
+                </a>
+                <ul>
+                  <li ng-repeat="subtask in tasks | childTasks:t ">
+                    <a ng-click="deleteTask(subtask)">x</a> 
+                    <a ng-click="edit(subtask)">{{::subtask.data.title}}
+                      <span ng-show="::subtask.data.context">[{{::subtask.data.context}}]</span>
+                      <span ng-show="::subtask.data.due"><i>&nbsp;&nbsp;{{::subtask.data.due | date: 'MMM d, yyyy'}}</i></span>
+                    </a>
+                    <ul>
+                      <li ng-repeat="sst in tasks | childTasks:subtask ">
+                        <a ng-click="deleteTask(sst)">x</a> 
+                        <a ng-click="edit(sst)">{{::sst.data.title}}
+                          <span ng-show="::sst.data.context">[{{::sst.data.context}}]</span>
+                          <span ng-show="::sst.data.due"><i>&nbsp;&nbsp;{{::sst.data.due | date: 'MMM d, yyyy'}}</i></span>
+                        </a>
+                      </li>
+                    </ul>
+
+                  </li>
+                </ul>
+              </li>
+          </ul> -->
+  
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <!--

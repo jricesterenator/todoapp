@@ -1,11 +1,51 @@
-<div>
-  <span ng-hide="task._id"><b>Enter a new task:</b></span>
-  <span ng-show="task._id"><b>Update existing task:</b></span>
-  <br>Title: <input type="text" required="true" ng-model="task.data.title"/>
-  <br>Description: <input type="text" ng-model="task.data.description"/>
+<div class="task-entry">
+  <span class="task-attr-title">
+    <h2 >Title</h2>
+    <input autofocus type="text" class="form-control" required="true" ng-model="task.value.data.title"/>
+  </span>
 
-  <span ng-show="task._id">
-    <div>Created: {{::task.data.created | date: 'MMM d, yyyy  h:m a'}}</div>
-    <div>Last Updated: {{::task.data.updated | date: 'MMM d, yyyy  h:m a'}}</div>
+  <span class="task-attr-description">
+    <h4>Description</h4>
+    <textarea type="text" class="form-control" ng-model="task.value.data.description"></textarea>
+  </span>
+
+  <span class="task-attr-context">
+    <h4>Context</h4>
+    <input type="text" class="form-control" ng-model="task.value.data.context"/>
+  </span>
+
+  <span class="task-attr-parent">
+    <h4>Parent</h4>
+    <select ng-options="t._id as t.data.title for t in tasks | nonSelectedTasks:task" ng-model="task.value.data.parent">
+      <option value="">-- choose parent --</option>
+    </select>
+  </span>
+
+  <span class="task-attr-due">
+    <h4>Due Date</h4> 
+    <p class="input-group">
+      <input type="text" class="form-control" datepicker-popup="longDate" ng-model="task.value.data.due" is-open="opened" close-text="Close" />
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+      </span>
+    </p>
+  </span>
+
+  <span ng-show="task.value._id">
+
+    <span class="task-attr-id">
+      <h4>Id</h4>
+      <span>{{::task.value._id}}</span>
+    </span>
+
+    <span class="task-attr-created">
+      <h4>Created</h4>
+      <span class="attr-value">{{::task.value.data.created | date: 'MMM d, yyyy  h:mm a'}}</span>
+    </span>
+
+    <span class="task-attr-updated">
+      <h4>Updated</h4>
+      <span class="attr-value">{{::task.value.data.updated | date: 'MMM d, yyyy  h:mm a'}}</span>
+    </span>
   </span>
 </div>

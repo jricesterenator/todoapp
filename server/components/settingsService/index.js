@@ -3,8 +3,12 @@
 var fs = require('fs');
 var uuid = require('node-uuid');
 var _ = require('lodash');
+var mkdirp = require('mkdirp');
+var path = require('path');
 
-var propFile = '/tmp/store.json';
+var backupService = require('../backupService');
+
+var propFile = '/Users/jjrice/taskapp/store.json';
 
 
 //Get a list of all entries
@@ -16,7 +20,7 @@ module.exports.entries = function() {
   } catch (e) {
     if (e.code === 'ENOENT') {
       console.log('File not found!');
-      return [];
+      return {};
     } else {
       throw e;
     }
@@ -27,53 +31,64 @@ module.exports.entries = function() {
 }
 
 //Add a new entry
-module.exports.addEntry = function(entry) {
+module.exports.addEntry = function(dataKey, entry) {
   var newEntry = {
     _id : uuid.v4(),
-    data : entry.data
+    data: entry.data
   };
 
   var entries = this.entries();
-  entries.push(newEntry);
+  if(!entries.hasOwnProperty(dataKey)) {
+    entries[dataKey] = [];
+  }
+  entries[dataKey].push(newEntry);
   writeData(entries);
 
   return newEntry;
 }
 
 //Get a specific entry by id
-module.exports.entry = function(id) {
+module.exports.entry = function(dataKey, id) {
   var entries = this.entries();
-  return _.find(entries, {_id: id});
+  return _.find(entries[dataKey], {_id: id});
 }
 
 //Update entry
-module.exports.update = function(id, data) {
+module.exports.update = function(dataKey, id, data) {
   var entries = this.entries();
 
-  var entry = _.find(entries, {_id: id});
+  var entry = _.find(entries[dataKey], {_id: id});
   if(entry) {
     entry.data = data.data; //Only update the data portion, not the id
     writeData(entries);
-    return true;
+    return entry;
   }
-  return false;
 }
 
 //Delete entry
-module.exports.deleteEntry = function(id) {
+module.exports.deleteEntry = function(dataKey, id) {
   var entries = this.entries();
 
-  var removedElements = _.remove(entries, {_id: id});
+  var removedElements = _.remove(entries[dataKey], {_id: id});
   if(!_.isEmpty(removedElements)) {
     writeData(entries);
-    return true;
-  } else {
-    return false;
+    return removedElements;
   }
 }
 
 function writeData(entries) {
-  fs.writeFileSync(propFile, JSON.stringify(entries));
+
+  var thedir = path.dirname(propFile);
+  if (fs.existsSync(thedir)===false) {
+    mkdirp(thedir, function (err) {
+        if (err) console.error(err)
+        else console.log('pow!')
+    });
+  }
+
+  fs.writeFileSync(propFile, JSON.stringify(entries) + '\n');
+
+  backupService.backup(thedir);
 }
 
 

@@ -1,10 +1,11 @@
 'use strict';
 
 angular.module('todoAppApp')
-  .controller('MainCtrl', function ($scope, $http, $resource, Task) {
+  .controller('MainCtrl', function ($scope, $http, $resource, Task, Context, Selection) {
 
     function load() {
       $scope.tasks = Task.query();
+      $scope.contexts = Context.query();
     }
 
     $scope.save = function(taskToSave) {
@@ -21,21 +22,28 @@ angular.module('todoAppApp')
       load();
     };
 
-    $scope.delete = function(taskToDelete) {
-      taskToDelete.$delete();
+    $scope.deleteTask = function(taskToDelete) {
+      taskToDelete.$delete({isArray:true});
+      $scope.newTask();
       load();
     };
 
     $scope.edit = function(taskToEdit) {
-      $scope.task = taskToEdit;
+      Selection.editTask(taskToEdit);
+      $scope.task = Selection.selectionModel;
+      // $scope.task = taskToEdit;
     };
 
     $scope.newTask = function() {
-      $scope.task = new Task();
+      Selection.selectionModel.value = new Task();
+      $scope.task = Selection.selectionModel;
+      // $scope.task = new Task();
+
     };
 
     //----------------
     $scope.tasks = [];
+    $scope.contexts = [];
     $scope.newTask();
     load();
 
@@ -47,4 +55,19 @@ angular.module('todoAppApp')
       method: 'PUT'
     }
   });
-});
+})
+
+.factory('Selection', function() {
+
+  var service = {};
+
+  service.selectionModel = {};
+
+  service.editTask = function(taskToEdit) {
+    this.selectionModel.value = taskToEdit;
+  };
+
+  return service;
+
+})
+;

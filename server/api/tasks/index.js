@@ -1,18 +1,30 @@
 'use strict';
 
-var express = require('express');
-var controller = require('./tasks.controller');
+var dataKey = 'tasks';
 
+var express = require('express');
 var router = express.Router();
 
-router.get('/:id', controller.task);
+var base = require('../base/base.controller');
 
-router.get('/', controller.tasks);
+router.get('/:id', function(req, res) {
+  base.thing(dataKey, req, res);
+});
 
-router.post('/', controller.newTask);
+router.get('/', function(req, res) {
+  base.things(dataKey, req, res);
+});
 
-router.put('/:id', controller.updateTask);
+router.post('/', function(req, res) {
+  base.newThing(dataKey, req, res);
+});
 
-router.delete('/:id', controller.deleteTask);
+router.put('/:id', function(req, res) {
+  base.updateThing(dataKey, req, res);
+});
+
+router.delete('/:id', function(req, res) {
+  base.deleteThing(dataKey, req, res);
+});
 
 module.exports = router;
