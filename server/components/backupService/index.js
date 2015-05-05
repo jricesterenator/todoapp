@@ -13,6 +13,7 @@ module.exports.backup = function(dirToBackup) {
   //Commit changes to git backup
   exec('cd ' + dirToBackup + ' && git init && git add * && git commit -am "' + commitMessage + '"',  {maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
     if(error !== null) {
+      console.log("ERROR!");
       console.log(error);
       console.log(stdout);
       console.log(stderr);
