@@ -1,12 +1,13 @@
 'use strict';
 
 angular.module('todoAppApp')
-  .directive('taskEdit', function (Task) {
+  .directive('taskEdit', function () {
     return {
       restrict: 'E',
       templateUrl: 'components/task/task-edit.html',
       scope: {
-        task: '='
+        task: '=',
+        tasks: '='
       },
       link: function($scope) {
 
@@ -17,7 +18,11 @@ angular.module('todoAppApp')
           $scope.opened = true;
         };
 
-        $scope.tasks = Task.query();
+        /* Focus on title input when the task object changes (due to new task or editing) */
+        $scope.$watch('task.value', function() {
+          $('#titleText').focus();
+        });
+
       }
     };
   })

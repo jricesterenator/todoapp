@@ -1,27 +1,10 @@
-<!--
-<div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
--->
 <div class="container-fluid">
   <div class="row">
-    <!--
-    <div class="col-sm-3 col-md-2 sidebar">
-      <ul class="nav nav-sidebar">
-        <li class="active"><a href="#">Inbox</a></li>
-      </ul>
-    </div>
-  -->
 
-    <div class="col-sm-9 col-md-10 main">
+    <div class="col-sm-12 col-md-12 main">
 
-      <div class="panel panel-default task-panel col-xs-6">
+      <div class="panel panel-default task-panel col-xs-5">
         <div class="panel-heading task-header">
           <h2 ng-hide="task.value._id"><b>Enter a new task</b></h2>
           <h2 ng-show="task.value._id"><b>Update existing task</b></h2>
@@ -35,90 +18,47 @@
               <input type="button" class="btn btn-default" ng-disabled="!taskform.$valid" ng-show="task.value._id" ng-click="newTask()" value="New Task"/>
             </p>
              <p>
-              <task-edit task="task"></task-edit>
+              <task-edit task="task" tasks="tasks"></task-edit>
             </p>
           </form>
         </div>  
       </div>
-      <!--
-      <br>
-      <div>
-        Contexts:
-        <span ng-repeat="context in contexts track by $index">{{context.data.name}} </span>
-      </div>
-    -->
-      <div class="panel panel-default col-xs-6">
+
+      <div class="panel panel-default col-xs-7">
         <div class="panel-heading">
-          <h2>All tasks</h2>
+          <h2>Tasks</h2>
         </div>
         <div class="panel-body">
-
-          <h5>Hierarchy View</h5>
+          <h5>All Tasks</h5>
           <ul>
             <task-entry ng-repeat="t in tasks | parentsOnly track by t._id" task="t" alltasks="tasks" recursive="true"></task-entry>
           </ul>
 
-          <h5>Orphans (caused by hierarchical delete)</h5>
+          <div ng-show="(tasks | filter: isOrphan).length > 0">
+            <h5>Orphans (caused by hierarchical delete)</h5>
+            <ul>
+              <task-entry ng-repeat="t in tasks | filter: isOrphan" task="t" alltasks="tasks"></task-entry>
+            </ul>
+          </div>
+
+
+          <h5>Contexts</h5>
           <ul>
-            <task-entry ng-repeat="t in tasks | filter: isOrphan" task="t" alltasks="tasks"></task-entry>
+            <li ng-repeat="t in tasks" ng-if="t.data.context">{{t.data.context}}
+              <ul>
+                <task-entry ng-repeat="contextTask in tasks" ng-if="contextTask.data.context === t.data.context" task="contextTask"></task-entry>
+              </ul>
+            </li>
           </ul>
 
-          <h5>All</h5>
+          <h5>Due</h5>
           <ul>
-            <task-entry ng-repeat="t in tasks" task="t" alltasks="tasks"></task-entry>
+              <task-entry ng-repeat="st in tasks" ng-if="st.data.due" task="st"></task-entry>
+            </li>
           </ul>
-         <!--  <ul>
-              <li ng-repeat="t in tasks | parentsOnly track by t._id">
-                <a ng-click="deleteTask(t)">x</a> 
-                <a ng-click="edit(t)">{{::t.data.title}}
-                  <span ng-show="::t.data.context">[{{::t.data.context}}]</span>
-                  <span ng-show="::t.data.due"><i>&nbsp;&nbsp;{{::t.data.due | date: 'MMM d, yyyy'}}</i></span>
-                </a>
-                <ul>
-                  <li ng-repeat="subtask in tasks | childTasks:t ">
-                    <a ng-click="deleteTask(subtask)">x</a> 
-                    <a ng-click="edit(subtask)">{{::subtask.data.title}}
-                      <span ng-show="::subtask.data.context">[{{::subtask.data.context}}]</span>
-                      <span ng-show="::subtask.data.due"><i>&nbsp;&nbsp;{{::subtask.data.due | date: 'MMM d, yyyy'}}</i></span>
-                    </a>
-                    <ul>
-                      <li ng-repeat="sst in tasks | childTasks:subtask ">
-                        <a ng-click="deleteTask(sst)">x</a> 
-                        <a ng-click="edit(sst)">{{::sst.data.title}}
-                          <span ng-show="::sst.data.context">[{{::sst.data.context}}]</span>
-                          <span ng-show="::sst.data.due"><i>&nbsp;&nbsp;{{::sst.data.due | date: 'MMM d, yyyy'}}</i></span>
-                        </a>
-                      </li>
-                    </ul>
-
-                  </li>
-                </ul>
-              </li>
-          </ul> -->
-  
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!--
-<div class="container"</>
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.0.13 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
-  </div>
-</footer>
--->

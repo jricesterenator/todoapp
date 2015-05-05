@@ -20,8 +20,11 @@ angular.module('todoAppApp')
           Selection.editTask(taskToEdit);
         };
 
+        scope.newChildTask = function(parentTask) {
+          Selection.newChildTask(parentTask);
+        };
 
-        if(attrs.recursive === 'true' && angular.isDefined(scope.alltasks) && angular.isDefined(scope.task)) {     
+        if(attrs.recursive === 'true' && angular.isDefined(scope.alltasks) && angular.isDefined(scope.task)) {
           scope.childTasks = childTasksFilter(scope.alltasks, scope.task);
           
           if (angular.isArray(scope.childTasks)) {
