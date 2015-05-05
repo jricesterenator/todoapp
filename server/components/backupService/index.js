@@ -19,6 +19,9 @@ module.exports.backup = function(dirToBackup) {
       console.log(stderr);
       throw "Error committing backup to git!";
     }
+    console.log(error);
+      console.log(stdout);
+      console.log(stderr);
     console.log("OK");
   });
   console.log("haoeu");
