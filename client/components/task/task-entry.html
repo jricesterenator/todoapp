@@ -1,7 +1,7 @@
 <li> 
   <a ng-click="editTask(task)">{{::task.data.title}}
     <span ng-show="::task.data.context">[{{::task.data.context}}]</span>
-    <span ng-show="::task.data.due"><i>&nbsp;&nbsp;{{::task.data.due | date: 'MMM d, yyyy'}}</i></span>
+    <span ng-show="::task.data.due"><i>&nbsp;&nbsp;{{task.data.due | date: 'MMM d, yyyy'}}</i></span>
   </a>
   <a ng-click="newChildTask(task)">[+]</a>  
 </li>
