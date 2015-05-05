@@ -11,7 +11,7 @@ var commitMessage = "Tasks changed.";
 */
 module.exports.backup = function(dirToBackup) {
   //Commit changes to git backup
-  exec('cd ' + dirToBackup + ' && git init && git add * && git commit -am "' + commitMessage + '"', function(error, stdout, stderr) {
+  exec('cd ' + dirToBackup + ' && git init && git add * && git commit -am "' + commitMessage + '"',  {maxBuffer: 1024 * 500}, function(error, stdout, stderr) {
     if(error !== null) {
       throw "Error committing backup to git: " + error.message;
     }
