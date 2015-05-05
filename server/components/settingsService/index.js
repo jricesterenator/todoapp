@@ -8,7 +8,7 @@ var path = require('path');
 
 var backupService = require('../backupService');
 
-var propFile = 'H:\\todoappdata\\store.json';
+var propFile = 'c:\\projects\\todoappdata\\store.json';
 
 
 //Get a list of all entries

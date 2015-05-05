@@ -12,14 +12,18 @@ var commitMessage = "Tasks changed.";
 //TODO If git pash isn't correct, sometimes it will work out of the cwd instead of the data dir.
 module.exports.backup = function(dirToBackup) {
   //Commit changes to git backup
-  exec('cd ' + dirToBackup + ' && git init && git add * && git commit -am "' + commitMessage + '"', function(error, stdout, stderr) {
+  
+  var command = 'cd ' + dirToBackup + ' && git init && git add * && git commit -am "' + commitMessage + '"';
+  console.log("Backup command: " + command);
+  exec(command, function(error, stdout, stderr) {
     if(error !== null) {
-      console.log("ERROR!");
+      console.log("Error committing backup to git!");
       console.log(error);
       console.log(stdout);
       console.log(stderr);
-      throw "Error committing backup to git!";
+      //throw "Error committing backup to git!";
+    } else {
+      console.log(stdout);
     }
-    console.log(stdout);
   });
 }
