@@ -88,6 +88,7 @@ function writeData(entries) {
 
   fs.writeFileSync(propFile, JSON.stringify(entries) + '\n');
 
+  console.log("Backing up dir: " + thedir);
   backupService.backup(thedir);
 }
 
